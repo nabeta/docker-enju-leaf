@@ -1,0 +1,13 @@
+version: '2'
+services:
+  db:
+    image: postgres:9.6.1
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=enju_production
+  web:
+    image: orangain/enju_leaf:1.2.0
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
