@@ -2,10 +2,15 @@
 
 set -e
 
-export RAILS_ENV=production
-export SECRET_KEY_BASE=`bundle exec rake secret`
-export RAILS_SERVE_STATIC_FILES=true
+if [ "$1" = "bundle" ]; then
+	if [ ! -e .env ]; then
+		if [ "$SECRET_KEY_BASE" = "" ]; then
+			SECRET_KEY_BASE=`bundle exec rake secret`
+		fi
 
-rails g enju_leaf:quick_install
+		echo "SECRET_KEY_BASE=$SECRET_KEY_BASE" >> .env
+		rails g enju_leaf:quick_install
+	fi
+fi
 
-bundle exec foreman start
+exec "$@"

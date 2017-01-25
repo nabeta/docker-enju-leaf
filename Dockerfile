@@ -23,6 +23,12 @@ COPY database.yml ./config/
 
 RUN rails g enju_leaf:setup
 
+ENV RAILS_ENV=production
+ENV RAILS_SERVE_STATIC_FILES=true
+
 COPY Procfile entrypoint.sh ./
 
-CMD ["./entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
+
+EXPOSE 3000
+CMD ["bundle", "exec", "foreman", "start"]
