@@ -21,8 +21,14 @@ RUN bundle install
 
 COPY database.yml ./config/
 
+ENV DB_HOST=db
+ENV DB_USERNAME=postgres
+ENV DB_PASSWORD=password
+ENV DB_DATABASE=enju_production
+
 RUN rails g enju_leaf:setup
 
+# Note: Setting RAILS_ENV=production before `rails g enju_leaf:setup` fails.
 ENV RAILS_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
 
