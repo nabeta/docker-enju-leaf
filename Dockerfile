@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
 	ruby ruby-dev \
 	imagemagick libicu-dev zlib1g-dev unzip \
 	openjdk-8-jre-headless git libxslt1-dev build-essential nodejs redis-server \
-	libpq-dev \
+	libpq-dev file \
  && rm -rf /var/lib/apt/lists/*
 
 RUN gem install rails -v=4.2.7.1
