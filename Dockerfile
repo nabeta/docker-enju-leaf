@@ -34,7 +34,8 @@ ENV RAILS_SERVE_STATIC_FILES=true
 
 COPY Procfile entrypoint.sh ./
 
-ENTRYPOINT ["./entrypoint.sh"]
-
+VOLUME ["/enju_leaf/log", "/enju_leaf/config"]
 EXPOSE 3000
+
+ENTRYPOINT ["./entrypoint.sh"]
 CMD ["bundle", "exec", "foreman", "start"]
