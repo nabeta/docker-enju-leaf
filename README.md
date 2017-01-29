@@ -1,19 +1,35 @@
 # docker-enju-leaf
 
-Docker-related files for [Enju Leaf](https://github.com/next-l/enju_leaf).
+Docker image for [Enju Leaf](https://github.com/next-l/enju_leaf).
 
 ## Launch Enju Leaf with Docker Compose
 
-```
-$ wget https://github.com/orangain/docker-enju-leaf/raw/master/docker-compose.yml
-$ docker-compose up
-```
+1. Install [Docker Engine](https://docs.docker.com/engine/) and [Docker Compose](https://docs.docker.com/compose/).
+
+2. Download `docker-compose.yml` and launch containers.
+
+   ```
+   $ wget https://github.com/orangain/docker-enju-leaf/raw/master/docker-compose.yml
+   $ docker-compose up
+   ```
+
+3. Open `http://<DOCKER_HOST>:3000/` in a browser. Default administrator account is:
+   * user: `enjuadmin`
+   * password: `adminpassword`
 
 ## Launch Enju Leaf with Standalone Docker Engine
 
-```
-$ docker run -it -p 3000:3000 -e DB_HOST=<POSTGRES_HOST> orangain/enju_leaf:1.2.0
-```
+1. Install [Docker Engine](https://docs.docker.com/engine/) and setup PostgreSQL.
+
+2. Launch a container.
+
+   ```
+   $ docker run -it -p 3000:3000 -e DB_HOST=<POSTGRES_HOST> orangain/enju_leaf:1.2.0
+   ```
+
+3. Open `http://<DOCKER_HOST>:3000/` in a browser. Default administrator account is:
+   * user: `enjuadmin`
+   * password: `adminpassword`
 
 ## Settings via Enviroment Variables
 
