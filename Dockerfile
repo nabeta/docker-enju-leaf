@@ -11,8 +11,10 @@ RUN apt-get update && apt-get install -y \
 
 RUN gem install rails -v=4.2.7.1
 
+COPY enju_leaf_12_template.rb ./
+
 RUN rails _4.2.7.1_ new enju_leaf -d postgresql --skip-bundle \
-	-m https://gist.github.com/nabeta/8024918f41242a16719796c962ed2af1.txt
+	-m ./enju_leaf_12_template.rb
 
 WORKDIR ./enju_leaf
 
