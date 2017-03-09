@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
 	ruby ruby-dev \
 	imagemagick libicu-dev zlib1g-dev unzip \
 	openjdk-8-jre-headless git libxslt1-dev build-essential nodejs redis-server \
-	libpq-dev file \
+	libpq-dev file cron \
  && rm -rf /var/lib/apt/lists/*
 
 RUN gem install rails -v=4.2.7.1
@@ -33,6 +33,8 @@ RUN rails g enju_leaf:setup
 # Note: Setting RAILS_ENV=production before `rails g enju_leaf:setup` fails.
 ENV RAILS_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
+
+RUN bundle exec whenever --update-crontab
 
 COPY Procfile entrypoint.sh ./
 
