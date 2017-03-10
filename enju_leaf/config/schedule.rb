@@ -20,7 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 
 set :path, '/enju_leaf'
-set :environment, :development
+set :environment, :production
 set :output, "#{path}/log/cron_log.log"
 
 every 1.day, :at => '0:00 am' do
@@ -30,4 +30,21 @@ end
 every 1.day, :at => '3:00 am' do
   rake "sunspot:reindex"
 #  rake "sitemap:refresh:no_ping"
+end
+
+every 1.hour do
+  rake "enju_biblio:import"
+end
+
+every 5.minute do
+  rake "enju_message:send"
+end
+
+every 1.day, :at => '0:00 am' do
+  rake "enju_circulation:expire"
+  runner "User.lock_expired_users"
+end
+
+every 1.day, :at => '5:00 am' do
+  rake "enju_circulation:send_notification"
 end

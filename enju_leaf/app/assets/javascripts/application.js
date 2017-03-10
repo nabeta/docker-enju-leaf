@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require enju_leaf
+//= require enju_event/application
 
 //= require_tree .

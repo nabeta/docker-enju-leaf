@@ -13,4 +13,5 @@
  *= require_tree .
  *= require_self
  *= require enju_leaf
+ *= require enju_event/application
  */

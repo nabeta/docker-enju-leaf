@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
+  include EnjuCirculation::Controller
   include EnjuLibrary::Controller
+  include EnjuSubject::Controller
   include EnjuBiblio::Controller
 
   include Pundit
