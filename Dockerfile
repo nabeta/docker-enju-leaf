@@ -32,7 +32,7 @@ RUN rake assets:precompile
 
 RUN bundle exec whenever --update-crontab
 
-COPY Procfile entrypoint.sh ./
+COPY Procfile entrypoint.sh is_db_empty.rb ./
 
 VOLUME ["/enju_leaf/log", "/enju_leaf/config"]
 EXPOSE 3000
