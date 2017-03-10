@@ -9,30 +9,26 @@ RUN apt-get update && apt-get install -y \
 	libpq-dev file cron \
  && rm -rf /var/lib/apt/lists/*
 
-RUN gem install rails -v=4.2.7.1
+RUN echo 'gem: --no-rdoc --no-ri' >> ~/.gemrc
+RUN gem install bundler
 
-COPY enju_leaf_12_template.rb ./
+COPY enju_leaf/Gemfile* /enju_leaf/
 
-RUN rails _4.2.7.1_ new enju_leaf -d postgresql --skip-bundle \
-	-m ./enju_leaf_12_template.rb
+WORKDIR /enju_leaf
 
-WORKDIR ./enju_leaf
-
-RUN bundle -j4
+RUN bundle config without test development doc
 RUN bundle install
-
-COPY database.yml ./config/
 
 ENV DB_HOST=db
 ENV DB_USERNAME=postgres
 ENV DB_PASSWORD=password
 ENV DB_DATABASE=enju_production
-
-RUN rails g enju_leaf:setup
-
-# Note: Setting RAILS_ENV=production before `rails g enju_leaf:setup` fails.
 ENV RAILS_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
+
+COPY enju_leaf/ /enju_leaf/
+
+RUN rake assets:precompile
 
 RUN bundle exec whenever --update-crontab
 
