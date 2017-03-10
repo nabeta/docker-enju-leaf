@@ -29,8 +29,10 @@ if [ "$1" = "bundle" ]; then
 		rake enju_circulation:setup
 		rake enju_subject:setup
 		rake db:seed
-		rake enju_library:upgrade
 	fi
+
+	echo "Upgrading database..."
+	rake enju_leaf:upgrade
 
 	if [ -z "$ENJU_SKIP_SOLR" ]; then
 		echo "Re-indexing..."
