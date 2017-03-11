@@ -2,7 +2,7 @@
 
 Docker image for [Enju Leaf](https://github.com/next-l/enju_leaf).
 
-## Launch Enju Leaf with Docker Compose
+## Launch Enju Leaf with Docker Compose (Recommended)
 
 1. Install [Docker Engine](https://docs.docker.com/engine/) and [Docker Compose](https://docs.docker.com/compose/).
 
@@ -16,6 +16,24 @@ Docker image for [Enju Leaf](https://github.com/next-l/enju_leaf).
 3. Open `http://<DOCKER_HOST>:3000/` in a browser. Default administrator account is:
    * user: `enjuadmin`
    * password: `adminpassword`
+
+## Administration
+
+Database migration and reindexing in Solr is automatically done when a container is created. If database is empty, i.e. there's no table, initial data will be also inserted automatically.
+
+If needed, you can run administration tasks manually using `docker-compose exec` as followings:
+
+Reindex in Solr:
+
+```
+$ docker-compose exec web rake sunspot:reindex
+```
+
+Run SQL using psql:
+
+```
+$ docker-compose exec db psql -U postgres enju_production
+```
 
 ## Launch Enju Leaf with Standalone Docker Engine
 
