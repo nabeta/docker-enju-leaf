@@ -1,6 +1,6 @@
 # docker-enju-leaf
 
-Docker image for [Enju Leaf](https://github.com/next-l/enju_leaf).
+Docker image for [Next-L Enju Leaf](https://github.com/next-l/enju_leaf). Next-L Enju Leaf is an integrated library system developed by [Project Next-L](http://www.next-l.jp/).
 
 ## Launch Enju Leaf with Docker Compose (Recommended)
 
