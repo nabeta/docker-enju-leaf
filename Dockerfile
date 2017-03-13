@@ -30,6 +30,15 @@ COPY enju_leaf/ /enju_leaf/
 
 RUN rake assets:precompile
 
+RUN mv config/schedule.rb config/schedule.rb.orig && \
+	echo "env :PATH, ENV['PATH']" > config/schedule.rb && \
+	echo "env :DB_HOST, ENV['DB_HOST']" >> config/schedule.rb && \
+	echo "env :DB_USERNAME, ENV['DB_USERNAME']" >> config/schedule.rb && \
+	echo "env :DB_PASSWORD, ENV['DB_PASSWORD']" >> config/schedule.rb && \
+	echo "env :DB_DATABASE, ENV['DB_DATABASE']" >> config/schedule.rb && \
+	cat config/schedule.rb.orig >> config/schedule.rb && \
+	rm config/schedule.rb.orig
+
 RUN bundle exec whenever --update-crontab
 
 COPY Procfile docker-entrypoint.sh is_db_empty.rb ./
