@@ -41,7 +41,10 @@ RUN mv config/schedule.rb config/schedule.rb.orig && \
 
 RUN bundle exec whenever --update-crontab
 
-COPY Procfile docker-entrypoint.sh is_db_empty.rb ./
+COPY Procfile docker-entrypoint.sh is_db_empty.rb password_reset.patch ./
+
+RUN (cd `bundle show enju_leaf`/app/views/devise/mailer && \
+	patch -p1 < /enju_leaf/password_reset.patch)
 
 VOLUME ["/enju_leaf/log", "/enju_leaf/config"]
 EXPOSE 3000
