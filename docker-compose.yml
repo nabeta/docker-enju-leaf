@@ -4,6 +4,8 @@ services:
     image: orangain/enju_leaf:1.2.0
     ports:
       - "3000:3000"
+    environment:
+      - TZ=Asia/Tokyo
     depends_on:
       - db
   db:
