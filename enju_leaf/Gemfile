@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.8'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
@@ -46,7 +46,7 @@ group :development do
 end
 
 
-gem 'enju_leaf', '~> 1.2.0'
+gem 'enju_leaf', '~> 1.2.1'
 gem 'enju_manifestation_viewer', '~> 0.2.0'
 gem 'enju_circulation', '~> 0.2.0'
 gem 'enju_subject', '~> 0.2.0'

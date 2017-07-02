@@ -1,7 +1,7 @@
 version: '2'
 services:
   web:
-    image: orangain/enju_leaf:1.2.0
+    image: nabeta/enju_leaf:1.2.1
     ports:
       - "3000:3000"
     environment:
